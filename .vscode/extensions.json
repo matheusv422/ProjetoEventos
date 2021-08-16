@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "christian-kohler.path-intellisense",
+        "kreativ-software.csharpextensions",
+        "johnpapa.angular2",
+        "johnpapa.angular-essentials",
+        "formulahendry.dotnet",
+        "visualstudioexptteam.vscodeintellicode",
+        "donjayamanne.git-extension-pack"
+    ]
+}

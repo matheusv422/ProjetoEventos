@@ -15,6 +15,6 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 export class EventosComponent implements OnInit {
 
 ngOnInit():void {
-  
+
 }
 }

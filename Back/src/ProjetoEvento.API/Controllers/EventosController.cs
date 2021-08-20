@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoEvento.Application.Contratos;
-using ProjetoEvento.Domain;
+using ProjetoEvento.Application.Dtos;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProjetoEvento.API.Controllers
@@ -26,8 +27,15 @@ namespace ProjetoEvento.API.Controllers
             {
                 var eventos = await _eventoService.GetAllEventosAsync(true);
 
-                if (eventos == null) return NotFound("Nenhum evento encontrado.");
+                if (eventos == null) return NoContent();
 
+                    var eventoRetorno = new List<EventoDto>();
+
+                    foreach (var evento in eventos)
+                    {
+                        
+                    }
+                
                 return Ok(eventos);
             }
 
@@ -45,7 +53,7 @@ namespace ProjetoEvento.API.Controllers
             {
                 var evento = await _eventoService.GetEventoByIdAsync(id, true);
 
-                if (evento == null) return NotFound("Evento por Id não encontrado.");
+                if (evento == null) return NoContent();
 
                 return Ok(evento);
             }
@@ -66,7 +74,7 @@ namespace ProjetoEvento.API.Controllers
             {
                 var eventos = await _eventoService.GetAllEventosByTemaAsync(tema,true);
 
-                if (eventos == null) return NotFound("Eventos por tema não encontrados.");
+                if (eventos == null) return NoContent();
 
                 return Ok(eventos);
             }
@@ -81,7 +89,7 @@ namespace ProjetoEvento.API.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Post(Evento model){
+        public async Task<IActionResult> Post(EventoDto model){
 
              try
             {
@@ -93,7 +101,9 @@ namespace ProjetoEvento.API.Controllers
             }
 
             catch (Exception ex)
+            
             {
+
                  return this.StatusCode(StatusCodes.Status500InternalServerError,
                  $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
             }
@@ -102,7 +112,7 @@ namespace ProjetoEvento.API.Controllers
 
         [HttpPut ("{id}")]
 
-        public async Task<IActionResult> Put(int id,Evento model){
+        public async Task<IActionResult> Put(int id,EventoDto model){
 
              try
             {

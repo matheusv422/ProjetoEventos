@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace ProjetoEvento.API
 {
@@ -41,6 +42,10 @@ namespace ProjetoEvento.API
                     x => x.SerializerSettings.ReferenceLoopHandling =
                     Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 ); 
+
+
+                services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
             services.AddScoped<IEventoService, EventoService>();
             services.AddScoped<IGeralPersist, GeralPersist>();
